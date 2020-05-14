@@ -1,0 +1,34 @@
+---
+title: "README-RMARKDOWN"
+author: "Frank"
+date: "2020/5/14"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lazy.work)
+```
+
+# lazy.work
+Some R functions to save your time at Work
+
+## Install
+
+```r
+devtools::install_github("frankzhangsyd/lazy.work")
+```
+
+## Main Usages
+
+### Alteryx Related
+
+**ayx_fl**:convert a vector of column names and a function symbol`("+","-","*","/")` across all.
+
+ie: 
+
+```{r}
+ayx_fl(c("a","b"))
+
+```
+

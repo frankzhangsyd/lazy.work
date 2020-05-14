@@ -13,7 +13,7 @@ Main Usages
 
 ### Alteryx Related
 
-**ayx_fl**:convert a vector of column names and a function
+**ayx\_fl**:convert a vector of column names and a function
 symbol`("+","-","*","/")` across all.
 
 ie:
