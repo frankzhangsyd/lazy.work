@@ -2,7 +2,7 @@
 #'
 #' Genetate a string which can be copied into Alteryx formula tool
 #' @param x a vecotr of column names in Alteryx
-#' @param f the function will be applied across columns
+#' @param f the function will be applied across columns. Default is "+"
 #' @return a single string which can be copied into Alteryx formula
 #' @export
 #' @examples

@@ -9,7 +9,7 @@ ayx_fl(x, f = c("+", "-", "*", "/"))
 \arguments{
 \item{x}{a vecotr of column names in Alteryx}
 
-\item{f}{the function will be applied across columns}
+\item{f}{the function will be applied across columns. Default is "+"}
 }
 \value{
 a single string which can be copied into Alteryx formula
