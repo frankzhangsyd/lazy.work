@@ -6,9 +6,9 @@ Authors@R:
            family = "Zhang",
            role = c("aut", "cre"),
            email = "frank.dingrui@gmail.com")
-Description: Including small but useful functions to help you finish tasks in normal works
+Description: Including small but useful functions to help you finish tasks in normal works.
 License: use_mit_license()
-Imports: data.table, xml2 ,writexl
+Imports: data.table, xml2 ,writexl, purrr
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
