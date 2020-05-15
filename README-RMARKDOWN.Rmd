@@ -43,7 +43,7 @@ file_copy2_folder(from = "my folder path",to = c("destination_folder1","destinat
 
 ```
 
-**file_cut2_folder** :copy files or files in a folder to another place with adding prefix or suffix.
+**file_cut2_folder** :Copy files or files in a folder to another place with adding prefix or suffix.
 
 ie:
 
