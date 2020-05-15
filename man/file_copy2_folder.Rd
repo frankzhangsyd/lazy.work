@@ -17,7 +17,7 @@ file_copy2_folder(
 
 \item{to}{folder full paths. can be a vector}
 
-\item{affix_type}{"prefix" or "suffix". Default no suffix}
+\item{affix_type}{"prefix" or "suffix". Default no affix}
 
 \item{affix}{a character}
 

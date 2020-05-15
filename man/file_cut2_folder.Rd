@@ -17,7 +17,7 @@ file_cut2_folder(
 
 \item{to}{folder full path. Only length one}
 
-\item{affix_type}{"prefix" or "suffix". Default no suffix}
+\item{affix_type}{"prefix" or "suffix". Default no affix}
 
 \item{affix}{a character}
 
