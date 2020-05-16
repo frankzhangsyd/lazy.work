@@ -4,12 +4,12 @@
 \alias{ayx_documentation}
 \title{Output Alteryx tools related information}
 \usage{
-ayx_documentation(x, output)
+ayx_documentation(ayx_path, output_xlsx)
 }
 \arguments{
-\item{x}{the path of Alteryx workflow}
+\item{ayx_path}{the path of Alteryx workflow}
 
-\item{output}{the path of output file. Must be a .xlsx file}
+\item{output_xlsx}{the path of output file. Must be a .xlsx file}
 }
 \description{
 Currently only picks up input,output and formulas tools

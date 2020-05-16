@@ -20,24 +20,38 @@ ayx_fl <- function(x,f=c("+","-","*","/")){
 #' Currently only picks up input,output and formulas tools
 #'
 #'
-#' @param x the path of Alteryx workflow
-#' @param output the path of output file. Must be a .xlsx file
+#' @param ayx_path the path of Alteryx workflow
+#' @param output_xlsx the path of output file. Must be a .xlsx file
 #'
 #' @export
 #' @import data.table
 #' @import writexl
 #' @import xml2
-#'
+#' @import tools
 #'
 #' @examples
 #' ayx_documentation("myworkflow.yxdb","documentation.xlsx")
-ayx_documentation <- function(x,output){
-  ayx_xml <- read_xml(x)
+ayx_documentation <- function(ayx_path,output_xlsx){
+
+  if (!isTRUE(length(ayx_path)==1 && length(output_xlsx)==1)) {
+    stop("Input and output length must be one")
+  }
+
+
+  if (file_ext(ayx_path)!="yxdb") {
+    stop("Required Alteryx Workflow path ending with yxdb")
+  }
+
+  if (file_ext(ayx_path)!="xlsx") {
+    stop("Output must be a target place ending with xlsx")
+  }
+
+  ayx_xml <- read_xml(ayx_path)
   nodes_set <- xml_find_all(ayx_xml,"//Node")
   list_result <- lapply(nodes_set,ayx_extract_node)
   result <- rbindlist(list_result[!vapply(list_result,is.na,logical(1))])
   names(result) <- c("Tool Name","Annotation","File","Formula","Formula Field")
-  write_xlsx(result,output)
+  write_xlsx(result,output_xlsx)
 }
 
 #' Extract information of a simple node AKA:tools
