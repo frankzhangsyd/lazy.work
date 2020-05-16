@@ -34,10 +34,10 @@ ayx_fl <- function(x,f=c("+","-","*","/")){
 ayx_documentation <- function(x,output){
   ayx_xml <- read_xml(x)
   nodes_set <- xml_find_all(ayx_xml,"//Node")
-
-  result <- rbindlist(lapply(nodes_set,ayx_extract_node))
+  list_result <- lapply(nodes_set,ayx_extract_node)
+  result <- rbindlist(list_result[!vapply(list_result,is.na,logical(1))])
   names(result) <- c("Tool Name","Annotation","File","Formula","Formula Field")
-  write_xlsx(result[rowMeans(result=="",na.rm = TRUE)!=1,],output)
+  write_xlsx(result,output)
 }
 
 #' Extract information of a simple node AKA:tools
@@ -52,11 +52,7 @@ ayx_extract_node <- function(node){
   if (!xml_attr(xml_find_all(node,".//GuiSettings"),"Plugin")[1] %in% c("AlteryxBasePluginsGui.DbFileOutput.DbFileOutput",
                                                                         "AlteryxBasePluginsGui.DbFileOutput.DbFileOutput",
                                                                         "AlteryxBasePluginsGui.Formula.Formula")) {
-    return(list(node_name="",
-                node_annotation="",
-                node_file="",
-                node_formula_exp="",
-                node_formula_field_name=""))
+    return(NA)
   } else {
     node_name <- xml_attr(xml_find_all(node,".//GuiSettings"),"Plugin")
     node_annotation <- xml_text(xml_find_all(node,".//DefaultAnnotationText"))
