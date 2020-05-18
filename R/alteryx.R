@@ -38,18 +38,18 @@ ayx_documentation <- function(ayx_path,output_xlsx){
   }
 
 
-  if (file_ext(ayx_path)!="yxdb") {
-    stop("Required Alteryx Workflow path ending with yxdb")
+  if (file_ext(ayx_path)!="yxmd") {
+    stop("Required Alteryx Workflow path ending with yxmd")
   }
 
-  if (file_ext(ayx_path)!="xlsx") {
+  if (file_ext(output_xlsx)!="xlsx") {
     stop("Output must be a target place ending with xlsx")
   }
 
   ayx_xml <- read_xml(ayx_path)
   nodes_set <- xml_find_all(ayx_xml,"//Node")
   list_result <- lapply(nodes_set,ayx_extract_node)
-  result <- rbindlist(list_result[!vapply(list_result,is.na,logical(1))])
+  result <- rbindlist(list_result[!vapply(list_result,function(x) all(is.na(x)),logical(1))])
   names(result) <- c("Tool Name","Annotation","File","Formula","Formula Field")
   write_xlsx(result,output_xlsx)
 }
