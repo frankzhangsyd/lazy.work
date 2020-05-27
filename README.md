@@ -3,6 +3,8 @@ lazy.work
 
 Some R functions to save your time at Work
 
+![](https://www.r-pkg.org/badges/version/lazy.work)
+
 Install
 -------
 
