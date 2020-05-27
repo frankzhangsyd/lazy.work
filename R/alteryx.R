@@ -20,24 +20,38 @@ ayx_fl <- function(x,f=c("+","-","*","/")){
 #' Currently only picks up input,output and formulas tools
 #'
 #'
-#' @param x the path of Alteryx workflow
-#' @param output the path of output file. Must be a .xlsx file
+#' @param ayx_path the path of Alteryx workflow
+#' @param output_xlsx the path of output file. Must be a .xlsx file
 #'
 #' @export
 #' @import data.table
 #' @import writexl
 #' @import xml2
-#'
+#' @import tools
 #'
 #' @examples
 #' ayx_documentation("myworkflow.yxdb","documentation.xlsx")
-ayx_documentation <- function(x,output){
-  ayx_xml <- read_xml(x)
-  nodes_set <- xml_find_all(ayx_xml,"//Node")
+ayx_documentation <- function(ayx_path,output_xlsx){
 
-  result <- rbindlist(lapply(nodes_set,ayx_extract_node))
+  if (!isTRUE(length(ayx_path)==1 && length(output_xlsx)==1)) {
+    stop("Input and output length must be one")
+  }
+
+
+  if (file_ext(ayx_path)!="yxmd") {
+    stop("Required Alteryx Workflow path ending with yxmd")
+  }
+
+  if (file_ext(output_xlsx)!="xlsx") {
+    stop("Output must be a target place ending with xlsx")
+  }
+
+  ayx_xml <- read_xml(ayx_path)
+  nodes_set <- xml_find_all(ayx_xml,"//Node")
+  list_result <- lapply(nodes_set,ayx_extract_node)
+  result <- rbindlist(list_result[!vapply(list_result,function(x) all(is.na(x)),logical(1))])
   names(result) <- c("Tool Name","Annotation","File","Formula","Formula Field")
-  write_xlsx(result[rowMeans(result=="",na.rm = TRUE)!=1,],output)
+  write_xlsx(result,output_xlsx)
 }
 
 #' Extract information of a simple node AKA:tools
@@ -52,11 +66,7 @@ ayx_extract_node <- function(node){
   if (!xml_attr(xml_find_all(node,".//GuiSettings"),"Plugin")[1] %in% c("AlteryxBasePluginsGui.DbFileOutput.DbFileOutput",
                                                                         "AlteryxBasePluginsGui.DbFileOutput.DbFileOutput",
                                                                         "AlteryxBasePluginsGui.Formula.Formula")) {
-    return(list(node_name="",
-                node_annotation="",
-                node_file="",
-                node_formula_exp="",
-                node_formula_field_name=""))
+    return(NA)
   } else {
     node_name <- xml_attr(xml_find_all(node,".//GuiSettings"),"Plugin")
     node_annotation <- xml_text(xml_find_all(node,".//DefaultAnnotationText"))
