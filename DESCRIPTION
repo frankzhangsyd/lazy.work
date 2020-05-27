@@ -1,6 +1,6 @@
 Package: lazy.work
 Title: Save time from daily work
-Version: 0.0.0.9000
+Version: 0.0.1.0
 Authors@R: 
     person(given = "Dingrui",
            family = "Zhang",
