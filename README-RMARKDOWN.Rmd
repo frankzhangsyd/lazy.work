@@ -52,3 +52,22 @@ file_cut2_folder(from = "my folder path",to = "destination_folder1",affix_type =
 
 ```
 
+### Excel related
+
+## Excel Columnn Names
+
+**excel_column_letters**: A character vector contains all the column names (ie A,B,C,D) for excel.
+
+```{r}
+# First 5 columns
+excel_column_letters[1:5]
+
+```
+
+```{r}
+# Generate between two columns
+
+excel_column_letters[which(excel_column_letters == "AE"):which(excel_column_letters == "AH")]
+```
+
+
