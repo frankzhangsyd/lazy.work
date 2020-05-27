@@ -15,5 +15,7 @@ ayx_documentation(ayx_path, output_xlsx)
 Currently only picks up input,output and formulas tools
 }
 \examples{
+\dontrun{
 ayx_documentation("myworkflow.yxdb","documentation.xlsx")
+}
 }

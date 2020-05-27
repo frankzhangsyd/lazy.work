@@ -30,7 +30,9 @@ ayx_fl <- function(x,f=c("+","-","*","/")){
 #' @import tools
 #'
 #' @examples
+#' \dontrun{
 #' ayx_documentation("myworkflow.yxdb","documentation.xlsx")
+#' }
 ayx_documentation <- function(ayx_path,output_xlsx){
 
   if (!isTRUE(length(ayx_path)==1 && length(output_xlsx)==1)) {
