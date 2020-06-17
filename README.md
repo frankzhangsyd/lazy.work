@@ -3,6 +3,8 @@ lazy.work
 
 Some R functions to save your time at Work
 
+![](https://www.r-pkg.org/badges/version/lazy.work)
+
 Install
 -------
 
@@ -32,9 +34,6 @@ ie:
                       "Your/path/of/the/output/excel/file.xlsx")
 
 ### Excel related
-
-Excel Columnn Names
--------------------
 
 **excel\_column\_letters**: A character vector contains all the column
 names (ie A,B,C,D) for excel.
