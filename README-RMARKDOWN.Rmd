@@ -13,6 +13,9 @@ library(lazy.work)
 # lazy.work
 Some R functions to save your time at Work
 
+![](https://www.r-pkg.org/badges/version/lazy.work)
+
+
 ## Install
 
 ```r
@@ -44,8 +47,6 @@ ayx_documentation("Your/path/of/the/alteryx/workflow.yxmd",
 
 
 ### Excel related
-
-## Excel Columnn Names
 
 **excel_column_letters**: A character vector contains all the column names (ie A,B,C,D) for excel.
 
