@@ -52,8 +52,13 @@ ayx_documentation <- function(ayx_path,output_xlsx){
   nodes_set <- xml_find_all(ayx_xml,"//Node")
   list_result <- lapply(nodes_set,ayx_extract_node)
   result <- rbindlist(list_result[!vapply(list_result,function(x) all(is.na(x)),logical(1))])
-  names(result) <- c("Tool Name","Annotation","File","Formula","Formula Field")
-  write_xlsx(result,output_xlsx)
+  names(result) <- c("Tool_Name","Annotation","File","Formula","Formula Field")
+  write_xlsx(list(Input =  result[Tool_Name=="AlteryxBasePluginsGui.DbFileInput.DbFileInput",],
+                  Output =  result[Tool_Name=="AlteryxBasePluginsGui.DbFileOutput.DbFileOutput",],
+                  Formula =  result[Tool_Name=="AlteryxBasePluginsGui.Formula.Formula",]),
+             output_xlsx)
+  # write_xlsx(result,
+  #            output_xlsx)
 }
 
 #' Extract information of a simple node AKA:tools
@@ -65,7 +70,7 @@ ayx_documentation <- function(ayx_path,output_xlsx){
 #'
 ayx_extract_node <- function(node){
 
-  if (!xml_attr(xml_find_all(node,".//GuiSettings"),"Plugin")[1] %in% c("AlteryxBasePluginsGui.DbFileOutput.DbFileOutput",
+  if (!xml_attr(xml_find_all(node,".//GuiSettings"),"Plugin")[1] %in% c("AlteryxBasePluginsGui.DbFileInput.DbFileInput",
                                                                         "AlteryxBasePluginsGui.DbFileOutput.DbFileOutput",
                                                                         "AlteryxBasePluginsGui.Formula.Formula")) {
     return(NA)
