@@ -13,7 +13,7 @@ Main Usages
 
 ### Alteryx Related
 
-**ayx\_fl**:convert a vector of column names and a function
+**ayx\_fl** : Convert a vector of column names and a function
 symbol`("+","-","*","/")` across all.
 
 ie:
@@ -22,21 +22,14 @@ ie:
 
     ## [1] "[a]+[b]"
 
-### Manipulation of files
-
-**file\_copy2\_folder** :copy files or files in a folder to another
-place with adding prefix or suffix.
-
-ie:
-
-    file_copy2_folder(from = "my folder path",to = c("destination_folder1","destination_folder2"),affix_type = "prefix",affix = "Prefix_",from_is_folder = TRUE)
-
-**file\_cut2\_folder** :Copy files or files in a folder to another place
-with adding prefix or suffix
+**ayx\_documentation** : Extract information of
+*Input*,*Output*,*Formula* tools in Alteryx and save to user pointed
+excel path. (have to end with `xlsx`)
 
 ie:
 
-    file_cut2_folder(from = "my folder path",to = "destination_folder1",affix_type = "prefix",affix = "Prefix_",from_is_folder = TRUE)
+    ayx_documentation("Your/path/of/the/alteryx/workflow.yxmd",
+                      "Your/path/of/the/output/excel/file.xlsx")
 
 ### Excel related
 
@@ -49,12 +42,10 @@ names (ie A,B,C,D) for excel.
     # First 5 columns
     excel_column_letters[1:5]
 
-    ##   A   B   C   D   E 
-    ## "A" "B" "C" "D" "E"
+    ## [1] "A" "B" "C" "D" "E"
 
     # Generate between two columns
 
     excel_column_letters[which(excel_column_letters == "AE"):which(excel_column_letters == "AH")]
 
-    ##   AE   AF   AG   AH 
-    ## "AE" "AF" "AG" "AH"
+    ## [1] "AE" "AF" "AG" "AH"

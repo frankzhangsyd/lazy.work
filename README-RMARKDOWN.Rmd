@@ -23,7 +23,7 @@ devtools::install_github("frankzhangsyd/lazy.work")
 
 ### Alteryx Related
 
-**ayx_fl**:convert a vector of column names and a function symbol`("+","-","*","/")` across all.
+**ayx_fl** : Convert a vector of column names and a function symbol`("+","-","*","/")` across all.
 
 ie: 
 
@@ -32,25 +32,16 @@ ayx_fl(c("a","b"))
 
 ```
 
-### Manipulation of files
+**ayx_documentation** : Extract information of *Input*,*Output*,*Formula* tools in Alteryx and save to user pointed excel path. (have to end with `xlsx`)
 
-**file_copy2_folder** :copy files or files in a folder to another place with adding prefix or suffix.
+ie: 
 
-ie:
-
-```r
-file_copy2_folder(from = "my folder path",to = c("destination_folder1","destination_folder2"),affix_type = "prefix",affix = "Prefix_",from_is_folder = TRUE)
-
-```
-
-**file_cut2_folder** :Copy files or files in a folder to another place with adding prefix or suffix
-
-ie:
-
-```r
-file_cut2_folder(from = "my folder path",to = "destination_folder1",affix_type = "prefix",affix = "Prefix_",from_is_folder = TRUE)
+```{r, eval=FALSE}
+ayx_documentation("Your/path/of/the/alteryx/workflow.yxmd",
+                  "Your/path/of/the/output/excel/file.xlsx")
 
 ```
+
 
 ### Excel related
 
